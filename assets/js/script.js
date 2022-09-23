@@ -1,6 +1,3 @@
-const headsImage = './assets/images/penny-heads.jpg';
-const tailsImage = './assets/images/penny-tails.jpg';
-
 let heads = 0;
 let tails = 0;
 
@@ -22,9 +19,9 @@ const updateScoreboard = () => {
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('flip').addEventListener('click', () => {
     const isHeads = Math.random() > 0.5;
-    document.getElementById('penny-image').src = isHeads
-      ? headsImage
-      : tailsImage;
+    document.getElementById('penny-image').src = `./assets/images/penny-${
+      isHeads ? 'heads' : 'tails'
+    }.jpg`;
 
     if (isHeads) heads++;
     else tails++;
