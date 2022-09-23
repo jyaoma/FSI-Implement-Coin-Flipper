@@ -12,7 +12,7 @@ const updateScoreboard = () => {
   document.getElementById('tails-percent').textContent = `${tailsPercentage}%`;
 };
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('flip').addEventListener('click', () => {
     const isHeads = Math.random() > 0.5;
     document.getElementById('penny').src = `./assets/images/penny-${
