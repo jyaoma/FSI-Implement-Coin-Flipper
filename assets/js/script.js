@@ -1,9 +1,7 @@
-let heads = 0;
-let tails = 0;
+let heads = tails = 0;
 
 const updateScoreboard = () => {
   const total = heads + tails;
-
   const headsPercentage = total > 0 ? Math.round((heads * 100) / total) : 0;
   const tailsPercentage = total > 0 ? Math.round((tails * 100) / total) : 0;
   document.getElementById('heads').textContent = heads;
