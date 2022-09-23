@@ -4,22 +4,18 @@ let tails = 0;
 const updateScoreboard = () => {
   const total = heads + tails;
 
-  const headsPercentage = total > 0 ? heads / total : 0;
-  const tailsPercentage = total > 0 ? tails / total : 0;
+  const headsPercentage = total > 0 ? Math.round((heads * 100) / total) : 0;
+  const tailsPercentage = total > 0 ? Math.round((tails * 100) / total) : 0;
   document.getElementById('heads').textContent = heads;
-  document.getElementById('heads-percent').textContent = `${Math.round(
-    headsPercentage * 100
-  )}%`;
+  document.getElementById('heads-percent').textContent = `${headsPercentage}%`;
   document.getElementById('tails').textContent = tails;
-  document.getElementById('tails-percent').textContent = `${Math.round(
-    tailsPercentage * 100
-  )}%`;
+  document.getElementById('tails-percent').textContent = `${tailsPercentage}%`;
 };
 
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('flip').addEventListener('click', () => {
     const isHeads = Math.random() > 0.5;
-    document.getElementById('penny-image').src = `./assets/images/penny-${
+    document.getElementById('penny').src = `./assets/images/penny-${
       isHeads ? 'heads' : 'tails'
     }.jpg`;
 
@@ -34,8 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   document.getElementById('clear').addEventListener('click', () => {
-    heads = 0;
-    tails = 0;
+    heads = tails = 0;
     updateScoreboard();
   });
 });
