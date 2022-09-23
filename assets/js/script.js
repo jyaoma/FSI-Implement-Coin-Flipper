@@ -1,27 +1,44 @@
-// TODO: Declare any global variables we need
+const headsImage = './assets/images/penny-heads.jpg';
+const tailsImage = './assets/images/penny-tails.jpg';
 
+let heads = 0;
+let tails = 0;
+
+const updateScoreboard = () => {
+  const total = heads + tails;
+
+  const headsPercentage = total > 0 ? heads / total : 0;
+  const tailsPercentage = total > 0 ? tails / total : 0;
+  document.getElementById('heads').textContent = heads;
+  document.getElementById('heads-percent').textContent = `${Math.round(
+    headsPercentage * 100
+  )}%`;
+  document.getElementById('tails').textContent = tails;
+  document.getElementById('tails-percent').textContent = `${Math.round(
+    tailsPercentage * 100
+  )}%`;
+};
 
 document.addEventListener('DOMContentLoaded', function () {
-    // This is just a sanity check to make sure your JavaScript script is getting loaded
-    // You can remove it once you see it in your browser console in the developer tools
-    console.log('Hi')
+  document.getElementById('flip').addEventListener('click', () => {
+    const isHeads = Math.random() > 0.5;
+    document.getElementById('penny-image').src = isHeads
+      ? headsImage
+      : tailsImage;
 
-    // TODO: Add event listener and handler for flip and clear buttons
+    if (isHeads) heads++;
+    else tails++;
 
-    // Flip Button Click Handler
-        // TODO: Determine flip outcome
-        // TODO: Update image and status message in the DOM
+    document.querySelector('.message-container').textContent = `You rolled ${
+      isHeads ? 'Heads' : 'Tails'
+    }!!`;
 
-        // Update the scorboard
-        // TODO: Calculate the total number of rolls/flips
-        // Make variables to track the percentages of heads and tails
-        // TODO: Use the calculated total to calculate the percentages
-        // HINT: Make sure not to divide by 0! (if total is 0, percent will be 0 as well)
-        // TODO: Update the display of each table cell
+    updateScoreboard();
+  });
 
-
-    // Clear Button Click Handler
-        // TODO: Reset global variables to 0
-        // TODO: Update the scoreboard (same logic as in flip button click handler)
-
-})
+  document.getElementById('clear').addEventListener('click', () => {
+    heads = 0;
+    tails = 0;
+    updateScoreboard();
+  });
+});
